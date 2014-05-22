@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<report id="agency.agency_report" 
+		name="agency.travel.webkit"
+		auto="False" 
+		model="agency.travel"
+		file="agency/report/agency.mako"
+		string="Travel" 
+		report_type="webkit"
+		webkit_header="agency.report_travel"/>
+	</data>
+</openerp>
+
+
+<!--webkit_header="agency/report/agency.agency_report_header"-->
+
+<!--,'report/agency_report_header.xml' esto tiene que ir en el openerp.py-->

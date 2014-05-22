@@ -1,0 +1,334 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="view_agency_city_form">
+        <field name="name">agency.city.form</field>
+        <field name="model">agency.city</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="agency.city" version="7.0">
+                <sheet>
+		    <group string="City">
+			<field name="image" widget="image" class="oe_left oe_avatar"/>
+		        <field name="code" select="1"/>
+		        <field name="name" select="2"/>
+		        <field name="number_of_inhabitants" select="0"/>
+		        <field name="country" select="0"/>
+		    </group>
+		    <notebook>
+			<page string="Hotels">
+		       	    <field name="hotels" colspan="4" select="0"/>
+			</page>
+		    </notebook>
+		</sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_agency_city_tree">
+        <field name="name">agency.city.tree</field>
+        <field name="model">agency.city</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="agency.city">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="number_of_inhabitants"/>
+                <field name="country"/>
+                <field name="image"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_agency_city_kanban">
+	    <field name="name">agency.city.kanban</field>
+	    <field name="model">agency.city</field>
+	    <field name="type">kanban</field>
+	    <field name="arch" type="xml">
+		<kanban>
+		    <templates>
+		        <t t-name="kanban-box">
+		            <div class="oe_resource_vignette" style="border: 2px solid lightgrey;">
+		                <div class="oe_resource_image"  style="margin: 10px;">
+		                    <a type="edit"><img t-att-src="kanban_image('agency.city', 'image', record.id.value)" class="oe_resource_picture" width="120" height="80"/></a>
+		                </div>
+		                <div class="oe_resource_details"  style="margin: 10px;">
+		                    <ul><!--Here u have to write the ur objects field name which u wnt to display in kanban view -->
+		                       <li><span style="font-weight:bold;">Name: </span><field name="name"/></li>
+		                       <li><span style="font-weight:bold;">Number of inhabitants: </span><field name="number_of_inhabitants"/></li>
+		                       <li><span style="font-weight:bold;">Country: </span><field name="country"/></li>                                    
+		                     </ul>
+		                </div>
+		            </div>                      
+		        </t>
+		    </templates>
+		</kanban>
+	    </field>
+	</record>
+
+    <record model="ir.actions.act_window" id="action_agency_city">
+        <field name="name">City</field>
+        <field name="res_model">agency.city</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+        
+    <record model="ir.ui.view" id="view_agency_hotel_form">
+        <field name="name">agency.hotel.form</field>
+        <field name="model">agency.hotel</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="agency.hotel" version="7.0">
+		<sheet>
+		    <group string="Hotel">
+			<field name="image" widget="image" class="oe_left oe_avatar"/>
+		        <field name="code" select="1"/>
+		        <field name="name" select="2"/>
+		        <field name="number_of_rooms" select="0"/>
+		        <field name="address" select="0"/>
+		        <field name="telephone_number" select="0"/>
+		        <field name="city_id" select="0"/>
+			<field name="price" select="0"/>
+		    </group>
+		    <notebook>
+			<page string="Scale">
+			    <field name="hotel_id" colspan="4" select="0"/>
+			</page>
+			<page string="Galery">
+			    <field name="image_id"  mode="kanban,tree">
+				    <kanban>
+					    <templates>
+						<t t-name="kanban-box">
+						    <div class="oe_resource_vignette" style="border: 2px solid lightgrey;">
+							<div class="oe_resource_image"  style="margin: 10px;">
+							    <a type="edit"><img t-att-src="kanban_image('agency.image', 'imatge', record.id.value)" class="oe_resource_picture" width="300" height="200"/></a>
+							</div>
+						
+						    </div>                      
+						</t>
+					    </templates>
+				     </kanban>
+			     </field>
+			</page>
+		    </notebook>
+		</sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_agency_hotel_tree">
+        <field name="name">agency.hotel.tree</field>
+        <field name="model">agency.hotel</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="agency.hotel">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="number_of_rooms"/>
+                <field name="address"/>
+                <field name="telephone_number"/>
+                <field name="city_id"/>
+                <field name="image"/>
+		<field name="price"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_agency_hotel_kanban">
+	    <field name="name">agency.hotel.kanban</field>
+	    <field name="model">agency.hotel</field>
+	    <field name="type">kanban</field>
+	    <field name="arch" type="xml">
+		<kanban>
+		    <templates>
+		        <t t-name="kanban-box">
+		            <div class="oe_resource_vignette" style="border: 2px solid lightgrey;">
+		                <div class="oe_resource_image" style="margin: 10px;">
+		                    <a type="edit"><img t-att-src="kanban_image('agency.hotel', 'image', record.id.value)" class="oe_resource_picture" width="120" height="80"/></a>
+		                </div>
+		                <div class="oe_resource_details"  style="margin: 10px;">
+		                    <ul><!--Here u have to write the ur objects field name which u wnt to display in kanban view -->
+		                       <li><span style="font-weight:bold;">Name: </span><field name="name"/></li>
+		                       <li><span style="font-weight:bold;">Address: </span><field name="address"/></li>
+		                       <li><span style="font-weight:bold;">Telephone Number: </span><field name="telephone_number"/></li> 
+				       <li><span style="font-weight:bold;">Number of rooms: </span><field name="number_of_rooms"/></li>
+				       <li><span style="font-weight:bold;">Price / Night: </span><field name="price"/></li>                                   
+		                     </ul>
+		                </div>
+		            </div>                      
+		        </t>
+		    </templates>
+		</kanban>
+	    </field>
+	</record>
+
+    <record model="ir.actions.act_window" id="action_agency_hotel">
+        <field name="name">Hotel</field>
+        <field name="res_model">agency.hotel</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+        
+    <record model="ir.ui.view" id="view_agency_travel_form">
+        <field name="name">agency.travel.form</field>
+        <field name="model">agency.travel</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="agency.travel" version="7.0">
+		<sheet>  
+	            <group string="Travel">
+			<field name="name" select="1"/> 
+                	<field name="code" select="1"/>
+                	<field name="day_start" select="2"/>
+                	<field name="day_end" select="0"/>
+		    </group>
+		    <notebook>
+			<page string="Scale">
+			    <field name="scale_id" domain="[('travel_id','=',id)]" mode="tree,graph" />
+			</page>
+			<page string="Client">
+			    <field name="client_id" select="0"/>
+			</page>
+		    </notebook>	    
+            	</sheet>
+	    </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_agency_travel_tree">
+        <field name="name">agency.travel.tree</field>
+        <field name="model">agency.travel</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="agency.travel">
+		<field name="name"/>                
+		<field name="code"/>
+                <field name="day_start"/>
+                <field name="day_end"/>
+                <field name="client_id"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_agency_travel">
+        <field name="name">Travel</field>
+        <field name="res_model">agency.travel</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+        
+    <record model="ir.ui.view" id="view_agency_scale_form">
+        <field name="name">agency.scale.form</field>
+        <field name="model">agency.scale</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="agency.scale" version="7.0"> 
+		<sheet>  
+	            <group string="Scale">             
+			<field name="code" select="1"/>                
+			<field name="hotel_id" select="0"/>
+                	<field name="travel_id" select="0"/>
+		    </group>
+		    <group string="Days">             
+			<field name="day_start" select="0"/>
+			<field name="day_end" select="0"/>
+			<field name="total_days" select="0"/>
+			<field name="total_price" select="0"/>
+		    </group>	    
+            	</sheet>
+	    </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_agency_scale_tree">
+        <field name="name">agency.scale.tree</field>
+        <field name="model">agency.scale</field>
+        
+        <field name="arch" type="xml">
+            <tree string="agency.scale">
+                <field name="code"/>
+                <field name="day_start"/>
+                <field name="day_end"/>
+                <field name="total_days"/>
+                <field name="hotel_id"/>
+                <field name="travel_id"/>
+		<field name="total_price"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_agency_scale_calendar">
+        <field name="name">agency.scale.calendar</field>
+        <field name="model">agency.scale</field>
+	<field name="type">calendar</field>
+        <field name="arch" type="xml">		
+		<calendar string="Calendar" date_start="day_start" color="code" date_stop="day_end">
+			<field name="code"/>
+		        <field name="day_start"/>
+		        <field name="day_end"/>
+		        <field name="total_days"/>
+		        <field name="hotel_id"/>
+		</calendar>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_agency_scale_graph">
+	<field name="name">>agency.scale.graph</field>
+	<field name="model">agency.scale</field>
+	<field name="type">graph</field>
+	<field name="arch" type="xml">
+	     <graph string="Graph" type="bar">
+		<field name="code"/>
+	 	<field name="total_price" operator="+"/>
+	     </graph>
+	</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_agency_scale">
+        <field name="name">Scale</field>
+        <field name="res_model">agency.scale</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+
+        
+    <record model="ir.ui.view" id="view_agency_image_form">
+        <field name="name">agency.image.form</field>
+        <field name="model">agency.image</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="agency.image">
+                <field name="code" select="1"/>
+                <field name="imatge" select="2"/>
+                <field name="image_id" select="0"/>
+
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_agency_image_tree">
+        <field name="name">agency.image.tree</field>
+        <field name="model">agency.image</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="agency.image">
+                <field name="code"/>
+                <field name="imatge"/>
+                <field name="image_id"/>
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_agency_image">
+        <field name="name">Image</field>
+        <field name="res_model">agency.image</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem name="Agency" id="menu_agency"/>
+    <menuitem name="Menu" id="menu_global" parent="menu_agency"/>
+    <menuitem name="Travel" id="menu_agency_travel" action="action_agency_travel" parent="menu_global"/>
+    <menuitem name="City" id="menu_agency_city" action="action_agency_city" parent="menu_global"/>
+    <menuitem name="Hotel" id="menu_agency_hotel" action="action_agency_hotel" parent="menu_global"/>
+    <menuitem name="Scale" id="menu_agency_scale" action="action_agency_scale" parent="menu_global"/>
+        
+</data>
+</openerp>

@@ -1,0 +1,298 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record id="report_travel" model="ir.header_webkit">
+            <field name="footer_html"><![CDATA[<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+        <script>
+            function subst() {
+            var vars={};
+            var x=document.location.search.substring(1).split('&');
+            for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+            var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+            for(var i in x) {
+            var y = document.getElementsByClassName(x[i]);
+            for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+                }
+            }
+        </script>
+    </head>
+    <body style="border:0; margin: 0;" onload="subst()">
+        <table style="border-top: 1px solid black; width: 100%">
+            <tr >
+                <td style="text-align:right;font-size:12;" width="95%">Page <span class="page"/></td><td style="text-align:left;font-size:12;">  of <span class="topage"/></td>
+            </tr>
+        </table>
+    </body>
+</html>]]></field>
+            <field eval="&quot;&quot;&quot;Portrait&quot;&quot;&quot;" name="orientation"/>
+            <field eval="&quot;&quot;&quot;A4&quot;&quot;&quot;" name="format"/>
+            <field name="html"><![CDATA[<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+        <script>
+            function subst() {
+            var vars={};
+            var x=document.location.search.substring(1).split('&');
+            for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+            var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+            for(var i in x) {
+            var y = document.getElementsByClassName(x[i]);
+            for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+                }
+            }
+        </script>
+        <style type="text/css">
+            ${css}
+        </style>
+    </head>
+    <body style="border:0; margin: 0;" onload="subst()">
+        <table class="header" style="border-bottom: 0px solid black; width: 100%">
+            <tr>
+                <td>${helper.embed_logo_by_name('travel_logo')|n}</td>
+                <td style="text-align:right"> </td>
+            </tr>
+            <tr>
+                <td><br/></td>
+                <td style="text-align:right"> </td>
+            </tr>
+            <tr>
+                <td>${company.partner_id.name |entity}</td>
+                <td/>
+            </tr>
+            <tr>
+                <td >${company.partner_id.street or ''|entity}</td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Phone: ${company.partner_id.phone or ''|entity} </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Mail: ${company.partner_id.email or ''|entity}<br/></td>
+            </tr>
+        </table> ${_debug or ''|n} </body>
+</html>]]>
+</field>
+            <field eval="55.0" name="margin_top"/>
+            <field name="css" ><![CDATA[
+body {
+font-family:helvetica;
+font-size:12;
+}
+
+
+.dest_address {
+margin-left:60%;
+font-size:12;
+}
+.header {
+margin-left:0;
+text-align:left;
+width:300px;
+font-size:12;
+}
+
+.title {
+font-size:16;
+font-weight: bold;
+
+}
+
+
+.basic_table{
+text-align:center;
+border:1px solid lightGrey;
+border-collapse: collapse;
+}
+.basic_table td {
+border:1px solid lightGrey;
+font-size:12;
+
+
+}
+
+.list_table {
+border-color:black;
+text-align:center;
+border-collapse: collapse;
+
+}
+.list_table td {
+border-color:gray;
+border-top:1px solid gray;
+text-align:left;
+font-size:12;
+padding-right:3px
+padding-left:3px
+padding-top:3px
+padding-bottom:3px
+}
+
+.list_table th {
+border-bottom:2px solid black;
+text-align:left;
+font-size:12;
+font-weight:bold;
+padding-right:3px
+padding-left:3px
+}
+
+.list_tabe thead {
+    display:table-header-group;
+}
+
+
+.total {
+width:100%;
+}
+.lib {
+width:10.3%;
+}
+.tot {
+text-align:right;
+width:15%;
+}
+.lefttot {
+width:74%;
+}
+.tax {
+width:50%;
+}]]> </field>
+            <field eval="&quot;&quot;&quot;Travel&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="ir_header_img_travel" model="ir.header_img">
+            <field eval="&quot;&quot;&quot;png&quot;&quot;&quot;" name="type"/>
+            <field eval="&quot;&quot;&quot;iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A
+/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB90MBBExMjuIQHIAAABEdEVYdENv
+bW1lbnQAQ1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBkZWZhdWx0
+IHF1YWxpdHkKEEYPUAAAG3FJREFUeNrtXXl4FFW2P+fe6u509g0Sk0ASQoCwb4ZNRlZRFkUcdRBk
+nizKEwfHN4rrfKOA46gjb8TxCQgj+6oI4oqQyBJAhEg2SMISyELIHrJ2d1Xd8/6oTtukO0knaUzm
+fa/4vtDVXXXr3nN/99yzF6qqCv9/uHawDnw2Edn+/nsTq80jcf1GRBRCIOK/C/mYKyNxsfdEBEAI
+KEi7kQi0f6A1YP9Xu54xZt+4I/k61YFN8Swi0jothGDMpdVKQEDIuf3FKgACERGQRkbiiGRr3OlD
+m/q18xKrVb1vuAw4Z0+s3JVZYmHIdAj+3sZgL12AryG8i09kqF9seECvyBA9ZwAghAqAv9DZ9lnD
+Gdp902kOqUW2YvvbDAW15cOQAagVZn7+9DFLbTFTZEQmJAl1vswYIBsDdTofi4rdg43xcSETBnTX
+KUXmsoLgLsHdIrrF9IwJ8PfXmhdCBWCdEF+S0/E3DygraezWpsZ9AAgEDujR9dtrZ+Xi1HHjfxMR
+HrF50xbQcyTw8I+pqSo0+AVeD4w7kN/vi7NXQZaYUmEuOAhV+cHeOrm6rKufx4CBfcaNH3/f5Mnd
+une3ApCAEBFagTXH/rtlgf+yDBuNvxlW1dSDiQCZ+uP5orsefEJcPHTw4LfrN2zas+8rDy9fKbC/
+PrQ7enQpS3wHGZAQTPLSRQwydB9Bfj0UMOssas/uwcN7xyCZctJOXziXoN68MWPKXU/MWxA/8k4g
+oRJAa4bq2H/XmW8LxGoVshpzdQRtEwQARIYIQ//j/YsnvqgpLwoKCesZN7xrWERk74FeRr81a1ZZ
+qgpNVxIQGCFDEKhYmG+kV6/JFD5QEUBKVYhOGhYbEdl3MCPlxtVLycd3VVw5t2De7JdfXGb09BRC
+AAEAgUs89LYhq41SJSIjQs4B4Odz5/bs2bXvq0MWqUtk39ExcUP8QrvJFiGEAAQESEnan1bpUfn1
+X0DiACSEiI+Pv3zpUnlpEfe5w7Pf/dh1gKIKTrJ37dXJd0/0C+kGwLhBfzX5yJH9Hz5wz6h/rHrH
+28cXqC3Dbj+92kIsItKYvobq778/uHHTxsNHzgT0GDRgxIyoPgMVVZKFmQkOQIQCG3iNRPLa7TvV
+vBOW6ymAJCyWr7/65r6p9/oHhtbU3ASSpaC+XqMXWRQgBh51RXNnzRIEyEgAGCRj4eWfv9q8ctni
+ua+89qqqWidAW/1ILmGtnSuxjchijN0oKFi+cvnuA4ejBk0cOPb+oJBoi8VMpC1KrW1tjaJtvUqk
+O3nyq4zrlXU/vEtML2RzQeH1xISEuXPmMb1EwEhQwPS/ycRUuZbr/INZ2bTRI7hfV67IKjIi0Bt0
+qcf2XDnx+Q+HvwoNCVMV2WA02liSvXjYFBdrL7Jag08CQsbZc396btv+E1Me/a/Q2AGyqQ6ACRuF
+AFDTWhrzfyCmVhcV7T2dUX/qY7U6X1jM1bU18fHxmRcvIxAAE4ICZryjJ8vMMXem5RamXLoi6ir7
+eMvDx07xCrhD2xkBOZlK169YoKo1QaF9TXWVfgaMiQp98KFZv5/zmLePj6oKvHWe2sCUbRdou792
+akWWi/jUxM5XXn4p6ZI8/N4nZIsFGwRJpvUMBQAIZACAQty6NAgIJZ3u8y/3lZaX1J74QKjStl3b
+5zz6CEg6xhCA6zy7SOOeH9s/pldYCDJ2s6L44LGkao8uluuZffzZqEmz9L5+JAAE4zpl57vPjp/x
++5C4sZzL5rr67LOJyUc/HRZ7xz9WvdunTx8hRCNauL7dN7rA9qG1yAISIii6/8I39pplCyNBBKoq
+BJEeZUnScS4pimJRVAIAJjHGmJ2ApOlDtVWlO4+lqylb1KL07lExVy5fYhInAgaoj52si/7NvOmT
+EQQCAYAkYcrppNOXS8g/hApS+4b6jJw8E7kPEEl62vq3xZMfeiogapiOZAWZxD3qb+Z+veWdwT28
+t2/dYTQaG4GoeWQ5XukcWa6ydoDk5LOLXl499rfPq7IlzM9jSB+/2DCv8EAfL6PeflbK6ywl5TW5
+N0xZhVUXcyssaJQ4MUIgQmQXrl48mZZTf2K1WlsETGKqDlBG0Pnc+1r/6JChfQeSIAIEIEQgxiyV
+xV8fPXaTdyUJWf65/j3C4u9+QEGdDsUnb86dtfhtj4Awpq07AonrSwvO71/3yqcbP5w0ZYojxFyU
+zhyh12oGn5aeNnvpWw8vePGJyT2iQn1IBUIgIEYIAAIBABiR9hmRGIHK2PmrpUlppSlXa3SShEgc
+edblrGPpOeLqKXPuccVUzj2CPEcsCAsKnHbPFEVRreoiEWnWC0QPLp09c+zMlQoy+jFO7EbG8L49
+B42cLJvNG1c+Pv/Vfyk6T6axeGQAqJfo03+++PiMO1eseNNGrzb8bTuytH0wtMfA/CupTKgEiJqw
+BUhIAIgEgASEhICaeQYRCQCIcV5RV/vdmcKTKWWqzkMCVl9XeTojPb+s1lRd7uvn1zcibGC/ATIp
+hByEIAKOhCCpKBAIARGxuvLG10fP1ur9kAhI0d/MGTl4UPfwO/Z9/MbsFzfIstxAYkBCSW84/sUH
+cQF1GzduVlXV3ojSFIKcfr6FZ7VGwgLO2d0TJuzds8c/IKBF6aYRwiVEYtxM6tGfC4+nF5ZWg17P
+OWcInEiQrMoMhEUdFeffK8JLJ0nltZbcotrzVytrZK7nDIAEcAOqiaeSsopNjHsiE4IUP6U8yJQT
+0CV80LjZQKTNlHXhcMO5xE3d+fXNW7ZqI3WKIJvNzr08i5Ag6cSJTdu2r1/zkW26XJWeNakCEQAY
+g9yimlOZxRdyq4oq61XUcZX6RXv/bnzPIB+dUIFx1mC6Ua6V1K09kFVr1gMoBMg5z8u9dujnDCF5
+AwpB0DcqPP+btx5Y9DfJN5AJe5kBGJdOHFh335DA199Y3ghfzWx8ThmZc92wxZU4eNjw77/9Ligo
+oG0KR8PaBEQABkSsqtbk6aXTI1fJDKTjjC1e/JTO0zhk8OD58/5DCKqorX9rW7oMktYMIMh11Z8n
+Hq3l/mCqfGj8GKNO7P3whXmv7LDItQ37LxIBIOh0+gMfvfz3Py+cMWOGuBUsTYlUTrdI1lp7LhEJ
+Vd21ffsDD81qZBR23eiOoEn6QAAkgITq46mXCIUqkHSa0LB27brKsvIhgwYTEYAI8vR45rdxQsgA
+HAEQSGf0e2TqlCBzYd+IwICAQL1XcFSf+MzkgxrrJADkksHIS/OzTx/cAjr2wMyZBUU3HMdos9k5
+Nd7Zf9kWZBER53zZy6/0iOy+ePHiVi/Glp9CaWkZgwcPIkEghIoEAEiIRBkFlWsOZDNuAABElUgH
+ICMCAAciPZc+fv2RBSv3AlHRldQf9q314TVTJ44dN27ygIF9o6KjAUAVKkIblcQ2Wx2IMT5k2ND1
+6zcMGTTI7VbNt9/5+6effXr2p9OqUNFqAyIEZEwczyjZnpin51xom7DGBoEIERBSDm/VSR4pp799
+cPzQv7z+enh4BGkE11YcEBJqxsQ29LktyLJeDyALtXevXkd+ONKtW4R7yEVACJyxvv0GzF8w/7/+
++Gyjn5EAGfvy1OVvk6s5FwRgp6gDoNAxvmrx6ML8K6F33NGiat1GV1hrfVCISAgS42kpqWPuHpeV
+dYkxbL+/j5AY0fkLFy6cT1+0cL7DDCEhCKLpo3oOjTUScUaMrAo8IAAKpgiIGzvj2rU8jVKOPKgp
+F2ejzjv9kjXlwmvR66lNqaeXV/b5C7MeeXj3rl2c83a7SBE5f/nll+bMe9zP169RUxqTJQAh1Pn3
+9AnyURpjBoGIRk6cs3b9R65sPjaIOALF+Zct8qzmeaEmv3PG581fUFtTu3vHNtcN007Fwh9PnR5z
+1+jSkpKAwMDmdFSAnPKa93ZmSjrp1geQh8Fr0+szb1zLtIHLlQ40IzG4GuvQFOJu2VkJVKFu/teG
+pUuWRMX02LFnN2OsYWZcdd9rT7BYLJPuu/f99z8IDA5qDhcIhBAT7D2kp7d2b4OvmwjQJNf7h/fL
+yEhvMEK65OhrRmJwlVhO73G8BgFVVR07dnTe1WtZGed7xvb59LPPJUliyLUeOx25/UwgktkiDxw4
+eOo9k5YufYZEC1wZCVSC394drVpUQIFIQBJD5MCAsdjBY48cTwLgLdKrvaJDmw37VgUKUVbE22+/
+vf6Tf82YMePpRQv79uvXYPYl2yIitPlokDGWmJgwbfrM+++fsXPHNpeMKkSEyBlsPXTlx0tVDLC6
+JCcn83Rx7mVTdZnFYurTzXvLpi2hoSENe6JVy3e/+749hn2tW4iIyE6cOPHRx+tOnjwZExkzfuL4
+4cOGx/aKDQ8LkzjTrszOzk5ISPhwzZqMtLRNGz+ZN2+e6+YnzXBcXGN+Y2Oqh1H/8+FtXgHhIVG9
+fLyCVEUtvHLu7OHP/Ay1Lz3/x9mPzQahqtCKyXeKGHciq6noBwAor6hMSjpxNvlsVlZWQX5BXV3d
+zeqqS1mZADBw6LCFT8xf8vTTAKL1Yhlwpq76NDO3VCbg0GBfBSAByCTgCp1N2Hbh5P6Xn1/6x2ef
+FUKQVTZrGWVuMP65fjg8jLQVp518snFz0Y0bL720zLZC2zA72j0ns4p2JF7niFYzmmZkBZuVgxl0
++rSje5J/2Lzhgw9m3D+NVEUAc2GVN4Gs5tHUBqy1eIusqLGxvdJSf/bx8WkPiAnAbFH+9HGKTuLO
+uRIBMUHADMi/2/ZmtJ/ps72fc8Q2xOq4JMG3Icas+W2UCCTOko4fHTBgSGpaxq0hXa2jFBB5eujD
+gnQMrZEEjloBCsYEWVR14pxXvfs+GB3Tp7SslJji9PqWidW8PNWitNV6OR0AICwsLCs769ln/7ho
+0SJVqFocTqseglYLlIiJ8AZHWmmGGs2+rYn3qhIUPfCBpR/2HTSyoqyq7bphM0BwRdpqPb0QAA06
+fuSHhFmPPNxvwIAlS5aWV1Rx60bZCpqRgG5BRpUYUiNMARKpCAw4IoCkR52Bc4Pke8dDL6y5c/Rv
+WCsRjR0f2q1FlzB25OjxF15YNmhgvzVrPmqwQaOLLOXSjcr3917lktUyYXOkSJIESu3FjB/zL6WU
+F+SYzWYhhNHT6BscUVd548lHJy9btsx1DiP9aiEozWCMiIQQd40ZdfrHEwcPfh/bp/+33xzo1aOn
+isJFanXx86wszSPzzS6R/QkQCJlOKslJPbT7vdhQ74dnPTBy7pOxsb18fX0RsermzfyC/PS09LT0
+dJuBtHWxDq0XBW4HyIhzPn/R4r1fJR78YsvwoXcSUaM9zknsFYBK6tPvfJ+4Z9WMxauEKiSD+G7D
+8jBj3Wd7P/X19W1Ko2aMuW7mBQDmuundvTy+KcZvlpX9B48++dfPptw/Ny/3GqAgasl4QqDnOp+g
+rjUVJcCpIPvkhld/1zUscsToEd7e3qoqmtIQW7vFMxdJcDt4vDNjGe7YumXw+EdN9crvX/lk1G8m
+Ewkr/2lm2qwyk5j0+Gvbls8tyE5Z8Jed3QdOrCwvZczacbdZSjsqKLgRRjQqbN66o3/8RERVcOPd
+j70y+7HHWcOIm5w2IgDQcSk4LObxP28fcf9TKgBjqKjg3vjwDs7dsceINv607Bw0+mvBXaExw1Pz
+5MTEhBaECTuGpiqyZtYSqmLQ6d3LNjqSWI4Yyc/P8w2NQ4uiUUcoYvq8V+fOf7oRuByFdACwCIuN
+bIhgqq/yDfAnEv9HiOV4pKakhEb1IiEACZHpDZJFro+IG/n2u+81RywEAJAtwl4Nqq4oDb+ji3u7
+14mIRURFxcU+fsECOaji6N73Ny9/6MrBdycO677u43XNW02rzZZbhGuCqorCiLBI927eUuchFiIa
+9AZZtVTlpR3a+sbmTz6aMGGjxr779Iz954f/XPL0kqaQVV5RA5KHLQcIGZZfv9ozdlGr4nz+nYgF
+AFHR0Zd/Wlukr8nNySICoQpCQoDH5sweOeauPzzzhyZkSMotN3EmbAuFM6mkILtPXG9VCPw/iSwA
+GD16tLiZn5qbSQ2xu5q6I0ncZDI5kXIICIkB5pfUMZSAhGZgkHQ6fw8AdyeWdS6eRURZ2RkkJEeZ
+Oya6R1FJKd36PSExQmTsWnEtgmoNJ0dWUZQTP2wIuDsplnUqniWEMBgMiE6S9rpHdr9RWIhONkKZ
+CHKLZM1ZRECcIPNs4swHHxSqm5NiO5fo0PTYiHNJ1iLGb90HBWPZBeWIAMSs+R06Q9bpb2Y9MJ3A
+zZps5yJWc9YRRZEk7hCIRgx0yZcqOWdgxSOSuaJ3dFfOJbercaw9LAZ+rUx5RCwuKQkKDGqEFQIE
+hHNZJWjjegDJx/b958L5mv+xsxDrV86Uv3b1areIsFvtWoAAWddKaxSDNfEfQa83pB//7LE5c26H
+gaBdyPoVLFw28FZWVwOAzbalZcQxxISfyySuIiIBCmDX0k8ueuwh0qokuPuQ2oMscAgcb8ae2SJF
+nF9PAIhVVVXh4RG2c7B6UKG8zpyWV6WXmOab0Ou9Eva8uzEz2SpvIbi3P8wtDMXFYLA2LGpCYASH
+Eg9PmTjOXnwnQgb8uzN5OonbhpV34djsmVM8PT1vU38ktywTx6RHxy+tWlrDfxpkGlKH0Wkj1n5z
+tmfPnhWvL7ebakLEWllJSivjXK9l1ur0hoPb3yq+luZif9owKMktyIKmg8GsEf4InLOi4tKffvop
+Ly+PgHx9fKOiooYNHWo0GmwbqxNKAQHA6VNne/bsqSHLWpeEwYFT11DSa4IpMX5i30fvLn+JcyOR
+cPTZtNYs3lwwW/vlgKbCWBGBcbZjz+5e/eLmz5+fkZHhHxAQGBhYV1d74MCBe6beFxvX97nnnsvK
+yuK8IfIN7LgzwfGkE1On3mcjJRIiQqVJPp5Wiii0CgaWihv1BWcWLlzkmEDrfgbvhmRrZ5UxAMBi
+UcdNGjdl0oTMjPMMsCGkDe2Dao4nJb2xYnlqSvqKFSsemjWTVFU0xMNwzv++atV777xLJDSOTQCc
+0efHrzCuBwGIpNfrN61emv3zUaEKup3EcinWwRXoOS1ZhIj33ntvbm5uZlbWli1bzGYzY0yreqSF
+BQkhVCHGjBy1c/uOc+fOJScn946Ly7x0kTOupQGYTKbLl6/ExETbno8I10vrf8q6qSWloGQ8sO7P
+n6x+s0uXkNsKK2iV+7610LMmBzEGAPn5+Qe++GL9ps1BQUGr//sffXrHCqFqrN0W0IFAiKy6unrC
+hAl/euHF3z36MAC8+OLLY+8aPW3aVCvrI2RcvLcr42qlggTAdOeP7+nrX7l69WqhquQsU6kDiOV6
+unoz0hZjLDc3b+GiJ4ODg7du3khWe1XjnG/GWPyIUU899VRgYMDKlW+ePXPaGhcKxIiduVz8yaF8
+iQOQrvhyUsnZPYcTEmw+59vqNnepMtsvzLXpGXN0AjbaWbQcmvDwsIPffbNowRMxvWLLKsqBfrnS
+tpBVVf3x1InqqorUlHM/nkz6JdwOUAZ1d8I1iREQK7ueev7QhsMJCUIVtn46MpO27V1O72ou8s8x
+Q7ZV0GuqdI52TXFpyZ3xd55KOhkaGgotJo1o9gSEbQmXT1+sAuRVuRmn9r2ddu6sltbhXgbS1F1N
+Rv7ZZqlt/n3HG+3FPCLqEhScknxu1Oi7FLUFMzlaUydFXknNyQsVDD0KMpOSv/lHekoy57zFvrVN
+h3V6F2tmL4N2hDg43ujYoL+/3+7du6ZPn8E4b1rttWa8ImPrv8n2MHqmHN1clb4/Nfknhi5J5G0b
+QnNC6e2I+2ixN0QwckR8THTk/i+/BGyCrRACCAR28Exercz3/s+ywV2V778/qKqC8NeO0uj4yD9E
+jIrpce1KjvMoKgJCwZE/9c6XO1e/sG3d36dPm64KFagD4lk62KysoenJhU/t2Lm7SWoCyIooTvks
+4cCOqfdNU4VA6pjIH9bhsCKiZcteWLlipXM2jADEJR2E+nsbPIzWmiQdFCPV8Q4LAtBJvHdcz5yc
+HCd4IQIkBG42m/U6CTq0Nm6n8O6Qqj6z5A9r1651QqyGb4qKioKCgju2dikqitLBRWcbksh7xfXL
+vpDhNJqBMdZ/0OD0lHO3loL91ZHV8eWMG5TDmJ4xRUXFTfVEVa1pg+7aVdpgvGO/mpOmJd1CfXzu
+nJ27dzsdW2FhYa9eMe6SBNuMD2YvjjqS/FfwpDY8AiaMG3/0yNFG6pimF+77fN/MWQ/a/KZNJRHb
+/+R4av9N86UGGjXi3AbvaO1svwXVdRNraEjXK7lXHX4lxviGzZuTfkhsXrG3taMJt9a6RIj2p/Yt
+OC1KY1/uyHaXc2I5c8lQO8tVtkplVWTFkf3frKrW6/QGDw8NWU31x17zt7eC2E5tgGqxBRuZmvPu
+NK/93j5kaRKCrKi+Xt6Nes85W77yzddfe03bJZvpT6OfnJ42P6Kmht+55CytY6mpaYMGDbrV8gEW
+i7x//757pkzuDNXOO4dQSoQIez/fO2vWg9SgThMRY3zBk4vXr/1I7VDxqjMRS3MzINu1c9ekiRMa
+6iUTAKSkpF6/XjBu3HjsHG8dkNyEi3YUNUBiBEePH588aQJoIVdEiCjL8tT7p13MzG5VodFORCz7
+zaVRzk272BXnS5f+4UjiD0IIzfvKGIuPj//iiwMeBkPneT8Dc4oRGy20Dch2yjkvLi6+fv16RUWF
+5hO0WCwpKSk3b960bVWtqiulRYF+e/D7EfGj/Pz8tNeocM5Hjxnz5lt/HeaOmm9ulKtvsZQiYmFh
+oZeXl4+PDyKWlJTIssw5DwwMlCSptra2vr7ey8ururpaK1usKAoR1dfXR0REFBcX6/V6WZa7dOni
+7I0NTfWVGOORUT0uXrzIkRhnldU1o0ePWvXee1OmTAGV3MKs3CVXNxZKDQYDAJhMJlmW9Xo9Y4xz
+3qjKGREpisI5Z4wZjUZErKio4Jyrqmq7vbKyUuufoihaIyEhIY0sCloow/MvvvTXt1ZKOsYA165b
+/7e33kxMTIyMjCRxS3nWNrBRe7nULWu58TIMDAw0mUxalrqqql5eXgBQV1dnNpvNZrO92CaEkGW5
+trZWkiRZlnU6nSzLjLGampr6+nq9Xl9XV1dfX885lyRJCFFQUOAYNpKWmn7q1I/D7xy+cuXK6B6x
+ZWVlOTk53bp106anzZugvarsRrnaeeGe0tJSIgoJCSGi4uJizT2nOdZlWTabzV5eXhqNTCaTh4eH
+lj5vUya0Nk0mU2RkZFlZmaIo2q9du3a1X4+MscXPLMm+mN27R89p06ZNnz6dGo7286nbYaRzTqym
+lMnmHc6OlzWaXkf/vq1M4L/Fu+huiyusneXKWnwFTCtfyuXu0pu3w+rSqpJIYPcCk0aqbJujad1u
+BL4txGqt9dU2qmYiJNrQvvvrDXWG14x28jf12Y7/BftRDTXzee6GAAAAAElFTkSuQmCC
+&quot;&quot;&quot;" name="img"/>
+            <field eval="&quot;&quot;&quot;travel_logo&quot;&quot;&quot;" name="name"/>
+        </record>
+    </data>
+</openerp>
